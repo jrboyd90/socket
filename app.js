@@ -7,7 +7,7 @@ var io = require('socket.io')(http);
 //setup websocket
 app.use('/socket-io',
   express.static('node_modules/socket.io-client/dist'));
-
+//setup Handlebars
 app.set('view engine', 'hbs');
 app.use(express.static('public'));
 
