@@ -12,17 +12,18 @@ app.set('view engine', 'hbs');
 app.use(express.static('public'));
 
 app.get('/', function (request, response) {
-  response.render('chat.hbs');
+  response.render('index.hbs');
 });
 
-io.on('connection', function(client){
-  console.log('CONNECTED');
-  client.on('disconnect', function () {
-    console.log('EXITED');
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg) {
+    io.emit('chat message', msg);
   });
 });
 
+
+
 //starts up server on port 8888
-app.listen(8888, function () {
+http.listen(8888, function () {
   console.log('Listening on port 8888');
 });
